@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-// import { NewsApiService } from './news-api.service';
+import { NewsApiService } from './news-api/news-api.service';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
@@ -30,7 +30,7 @@ import { AppComponent } from './app.component';
     MatSidenavModule,
     MatListModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [ NewsApiService ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }
