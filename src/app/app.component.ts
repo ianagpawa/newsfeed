@@ -1,6 +1,5 @@
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { NewsApiService } from './news-api/news-api.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +8,6 @@ import { Subscription } from 'rxjs';
 })
 export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   state: any;
-  // articles: any[];
-  // sources: any[];
-  // subscriptions: Subscription[];
-  
 
   constructor(private newsapi:NewsApiService){ }
 
@@ -20,8 +15,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     this.state.subscriptions.push(
-      this.newsapi.getSources().subscribe(data => this.state.sources = data['sources']),
-      this.newsapi.getArticles().subscribe(data=> this.state.articles = data['articles'])
+      this.newsapi.getSources().subscribe(sources => this.state.sources = sources),
+      this.newsapi.getArticles().subscribe(articles=> this.state.articles = articles)
     );
   }
 
@@ -38,7 +33,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
   searchArticles(source){
-    console.log("selected source is: "+source);
     this.newsapi.getArticlesById(source).subscribe(data => this.state.articles = data['articles']);
   }
 
