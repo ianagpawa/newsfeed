@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,18 +10,12 @@ export class NewsApiService {
   
   constructor(private http:HttpClient) { }
 
-  getSources() { return this.getRequest('sources?language=en'); }
+  getSources():Observable<any> { return this.getRequest('sources?language=en'); }
   
-  getArticles() { return this.getRequest('top-headlines?sources=techcrunch'); }
+  getArticles():Observable<any> { return this.getRequest('top-headlines?sources=techcrunch'); }
   
-  getArticlesById(source: String) { return this.getRequest(`?sources=${source}`); }
+  getArticlesById(source: String):Observable<any> { return this.getRequest(`?sources=${source}`); }
 
-  getRequest(path: string) {
-    const fullPath: string = `https://newsapi.org/v2/${path}&apiKey=${this.api_key}`;
-    // return new Promise( (resolve,reject) => { resolve(this.http.get(fullPath)); });
-    return this.http.get(fullPath);
-  }
+  getRequest(path: string):Observable<any> { return this.http.get(`https://newsapi.org/v2/${path}&apiKey=${this.api_key}`); }
 
-  
-  
 }
