@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { NewsApiService } from './news-api/news-api.service';
+import { IApp } from './app.component.interfaces';
 
 @Component({
   selector: 'app-root',
@@ -7,34 +8,40 @@ import { NewsApiService } from './news-api/news-api.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
-  state: any;
+  state: IApp.State;
 
-  constructor(private newsapi:NewsApiService){ }
+  /** Constructor */
+  constructor(private newsApi:NewsApiService) { }
 
-  ngOnInit() { this.initState() }
+  /** Initialize component. */
+  ngOnInit(): void { this.initState() }
 
-  ngAfterViewInit() {
+  /** Additional tasks after initialization. */
+  ngAfterViewInit(): void {
     this.state.subscriptions.push(
-      this.newsapi.getSources().subscribe(sources => this.state.sources = sources),
-      this.newsapi.getArticles().subscribe(articles=> this.state.articles = articles)
+      this.newsApi.getSources().subscribe(sources => this.state.sources = sources),
+      this.newsApi.getArticlesBySource(this.state.defaultSource).subscribe(articles=> this.state.articles = articles)
     );
   }
 
-  ngOnDestroy() {
+  /** Handles destroy event. */
+  ngOnDestroy(): void {
     this.state.subscriptions.forEach(x => x.unsubscribe());
     this.initState();
   }
 
-  initState() {
+  initState(): void {
     this.state = {
       articles: null,
+      defaultSource: 'techcrunch',
       sources:  null,
-      subscriptions: [],
-    }
-  }
-  searchArticles(source){
-    this.newsapi.getArticlesById(source).subscribe(data => this.state.articles = data['articles']);
+      subscriptions: []
+    };
   }
 
-  
+  getSources(): Array<Object> { return this.state.sources }
+
+  getArticles(): Array<Object> { return this.state.articles }
+
+  searchArticles(source: string): void { this.newsApi.getArticlesBySource(source).subscribe(articles => {this.state.articles = articles }); }  
 }

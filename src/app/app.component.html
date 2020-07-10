@@ -2,14 +2,8 @@
     <button mat-button (click)="sidenav.open ()"><mat-icon>menu</mat-icon></button>
     <span>News Headlines</span>
     <span class="example-spacer"></span>
-    <button mat-button [matMenuTriggerFor]="appMenu"><mat-icon>settings</mat-icon></button>
 </mat-toolbar>
-<mat-menu #appMenu="matMenu">
-    <button mat-menu-item> Settings </button>
-    <button mat-menu-item> Help </button>
-</mat-menu>
 <mat-sidenav-container class="example-container">
-
     <mat-sidenav #sidenav class="example-sidenav">
         <mat-list class="list-nav">
             <mat-list-item class="list-item" *ngFor="let source of state.sources" (click)="searchArticles(source.id);sidenav.close();">
