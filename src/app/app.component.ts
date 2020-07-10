@@ -20,8 +20,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     this.state.subscriptions.push(
       this.newsApi.getSources().subscribe(sources => this.state.sources = sources),
-      this.newsApi.getArticlesBySource(this.state.defaultSource).subscribe(articles=> this.state.articles = articles)
-    );
+      this.newsApi.getTopHeadlineArticles({sources: 'bloomberg'}).subscribe(articles=> this.state.articles = articles)
+    )
   }
 
   /** Handles destroy event. */
@@ -33,7 +33,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   initState(): void {
     this.state = {
       articles: null,
-      defaultSource: 'techcrunch',
       sources:  null,
       subscriptions: []
     };
@@ -43,5 +42,5 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   getArticles(): Array<Object> { return this.state.articles }
 
-  searchArticles(source: string): void { this.newsApi.getArticlesBySource(source).subscribe(articles => {this.state.articles = articles }); }  
+  searchArticles(source: string): void { this.newsApi.getTopHeadlineArticles({'sources': source}).subscribe(articles => {this.state.articles = articles }); }  
 }

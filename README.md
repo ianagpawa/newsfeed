@@ -34,5 +34,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Add tsdocs
 ## Add twitter
 ## Use PrimeNg instead, Carousel?
+## Add search bar, filters / dropdown menus
 ## Blank picture?
 ## Resize component
