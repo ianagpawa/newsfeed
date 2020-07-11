@@ -1,5 +1,5 @@
 # Newsfeed
-##### Angular news feed app using Angular CLI,[ NewsAPI](https://newsapi.org/) and  Material Design.
+##### Angular news feed app using Angular CLI, [NewsAPI](https://newsapi.org/) and  Material Design.
 
 ## Quick start
 Clone repo: `git clone https://github.com/ianagpawa/newsfeed.git`
@@ -39,14 +39,10 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 # TO DO
-## Refactor Request
-## Filter sources, add constants
-## Add interfaces for service; params and response
-## Add tests
-## Add tsdocs
-## Add twitter
-## Use PrimeNg instead, Carousel?
-## Add search bar, filters / dropdown menus
-## Blank picture?
-## Resize component
-## https://getstream.io/
+* Filter sources, add constants
+* Add tests
+* Use PrimeNg components instead, resize?
+* No picture
+* Add searchbar, filter for news sources as dropdown menu / autocomplete
+* Twitter scroll
+* https://getstream.io/
