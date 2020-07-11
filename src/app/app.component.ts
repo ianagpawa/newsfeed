@@ -8,7 +8,7 @@ import { IApp } from './app.component.interfaces';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
-  state: IApp.State;
+  private state: IApp.State;
 
   /** Constructor */
   constructor(private newsApi:NewsApiService) { }
@@ -20,7 +20,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     this.state.subscriptions.push(
       this.newsApi.getSources().subscribe(sources => this.state.sources = sources),
-      this.newsApi.getTopHeadlineArticles({sources: 'bloomberg'}).subscribe(articles=> this.state.articles = articles)
+      this.newsApi.getTopHeadlineArticles({sources: 'techcrunch'}).subscribe(articles=> this.state.articles = articles)
     )
   }
 
@@ -30,6 +30,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     this.initState();
   }
 
+  /** Initializes component state prop. */
   initState(): void {
     this.state = {
       articles: null,
@@ -38,9 +39,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     };
   }
 
-  getSources(): Array<Object> { return this.state.sources }
+  getSources(): any[] { return this.state.sources }
 
-  getArticles(): Array<Object> { return this.state.articles }
+  getArticles(): any[] { return this.state.articles }
 
   searchArticles(source: string): void { this.newsApi.getTopHeadlineArticles({'sources': source}).subscribe(articles => {this.state.articles = articles }); }  
 }
