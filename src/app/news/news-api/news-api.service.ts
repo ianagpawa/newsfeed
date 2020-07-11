@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators'
 import { TopHeadlines, Sources } from './news.api.interfaces';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
 /** News API Service. */
 export class NewsApiService {
