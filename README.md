@@ -7,9 +7,9 @@ Clone repo: `git clone https://github.com/ianagpawa/newsfeed.git`
 ### Prerequesites
 Install `node` and `Angular CLI`.
 * Node 12.18.2 `https://nodejs.org/en/blog/release/v12.18.2/`
-** Npm 6.14.6
+    * Npm 6.14.6
 * Angular CLI: 10.0.1 `https://angular.io/guide/setup-local`
-** Angular 10.0.2
+    * Angular 10.0.2
 
 ### Setup
 Run command `npm install`.
