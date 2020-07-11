@@ -1,14 +1,14 @@
 # Newsfeed
-##### Angular news feed app using Angular CLI, NewsAPI (https://newsapi.org/) and  Material Design.
+##### Angular news feed app using Angular CLI,[ NewsAPI](https://newsapi.org/) and  Material Design.
 
 ## Quick start
 Clone repo: `git clone https://github.com/ianagpawa/newsfeed.git`
 
 ### Prerequesites
 Install `node` and `Angular CLI`.
-* Node 12.18.2 `https://nodejs.org/en/blog/release/v12.18.2/`
+* [Node 12.18.2](https://nodejs.org/en/blog/release/v12.18.2/)
     * Npm 6.14.6
-* Angular CLI: 10.0.1 `https://angular.io/guide/setup-local`
+* [Angular CLI: 10.0.1](https://angular.io/guide/setup-local)
     * Angular 10.0.2
 
 ### Setup
