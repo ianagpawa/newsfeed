@@ -35,7 +35,7 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
   initState(): void {
     this.state = {
       articles: null,
-      defaultSource: 'techcrunch',
+      defaultSource: 'axios',
       sources:  null,
       subscriptions: []
     };
@@ -66,20 +66,4 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
   setArticles(articles: TopHeadlines.IArticles[]): void { this.state.articles = articles }
 
   searchArticles(source: string): void { this.newsApi.getTopHeadlineArticles({'sources': source}).subscribe(articles => { this.setArticles(articles) }); }  
-
-  getTest() {
-    return {
-      source: {
-        id: 'test',
-        name: 'testName'
-      },
-      author: 'some guy',
-      title: 'some title',
-      description: "it's oik",
-      url: 'someting.url',
-      urlToImage: null,
-      publishedAt: 'sometime',
-      content: 'here it is'
-    }
-  }
 }

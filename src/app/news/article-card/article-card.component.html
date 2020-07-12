@@ -3,7 +3,8 @@
         <!-- <p-header>
             <img src="{{input.urlToImage}}">
         </p-header> -->
-        {{input.description}}
+        <div>DESCRIPTION: {{ input.description || input.content }}</div>
+        <div>CONTENT: {{input.content}}</div>
         <p-footer> Published: {{input.publishedAt}}</p-footer>
     </p-card>
 </a>
