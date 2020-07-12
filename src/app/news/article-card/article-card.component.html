@@ -1,0 +1,9 @@
+<a href="{{input.url}}" target="_blank">
+    <p-card header="{{input.title}}" subheader="By {{input.author}} ({{input.source.name}})" styleClass="ui-card-shadow">
+        <!-- <p-header>
+            <img src="{{input.urlToImage}}">
+        </p-header> -->
+        {{input.description}}
+        <p-footer> Published: {{input.publishedAt}}</p-footer>
+    </p-card>
+</a>

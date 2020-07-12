@@ -13,6 +13,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { NewsComponent } from './news.component';
 import { NewsApiService } from './news-api/news-api.service';
+import { ArticleCardModule } from './article-card/article-card.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { NewsApiService } from './news-api/news-api.service';
     MatToolbarModule,
     MatIconModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    ArticleCardModule
   ],
   providers: [ NewsApiService ],
   bootstrap: [ NewsComponent ],

@@ -67,4 +67,19 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   searchArticles(source: string): void { this.newsApi.getTopHeadlineArticles({'sources': source}).subscribe(articles => { this.setArticles(articles) }); }  
 
+  getTest() {
+    return {
+      source: {
+        id: 'test',
+        name: 'testName'
+      },
+      author: 'some guy',
+      title: 'some title',
+      description: "it's oik",
+      url: 'someting.url',
+      urlToImage: null,
+      publishedAt: 'sometime',
+      content: 'here it is'
+    }
+  }
 }
