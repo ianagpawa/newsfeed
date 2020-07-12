@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -19,7 +19,6 @@ import { NewsApiService } from './news-api/news-api.service';
     NewsComponent
   ],
   imports: [
-    BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     MatButtonModule,
