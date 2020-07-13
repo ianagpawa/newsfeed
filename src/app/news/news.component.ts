@@ -14,7 +14,7 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
   private state: News.IState;
   private subscriptions: Subscription[];
   private requestParamsArticles: TopHeadlines.IRequest;
-
+  
   /** Constructor */
   constructor(private newsApi: NewsApiService) { }
 
