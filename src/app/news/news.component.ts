@@ -2,6 +2,8 @@ import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { NewsApiService } from './news-api/news-api.service';
 import { News } from './news.interfaces';
 import { Sources, TopHeadlines } from './news-api/news.api.interfaces';
+import { NEWS_SOURCES } from './news.constants';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-news',
@@ -10,6 +12,8 @@ import { Sources, TopHeadlines } from './news-api/news.api.interfaces';
 })
 export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
   private state: News.IState;
+  private subscriptions: Subscription[];
+  private requestParamsArticles: TopHeadlines.IRequest;
 
   /** Constructor */
   constructor(private newsApi: NewsApiService) { }
@@ -19,15 +23,15 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   /** Additional tasks after initialization. */
   ngAfterViewInit(): void {
-    this.state.subscriptions.push(
-      this.newsApi.getSources().subscribe(sources => this.setSources(sources)),
-      this.newsApi.getTopHeadlineArticles({sources: this.state.defaultSource }).subscribe(articles=> this.setArticles(articles))
-    )
+    this.subscriptions.push(
+      this.newsApi.getSources().subscribe(sources => this.setSources(this.getFilteredNewsSources(sources)) ),
+      this.newsApi.getTopHeadlineArticles(this.requestParamsArticles).subscribe(articles=> this.setArticles(articles))
+    );
   }
 
   /** Handles destroy event. */
   ngOnDestroy(): void {
-    this.state.subscriptions.forEach(x => x.unsubscribe());
+    this.subscriptions.forEach(sub => sub.unsubscribe());
     this.initState();
   }
 
@@ -35,10 +39,16 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
   initState(): void {
     this.state = {
       articles: null,
-      defaultSource: 'axios',
-      sources:  null,
-      subscriptions: []
+      sources:  null
     };
+
+    this.subscriptions = [];
+
+    this.requestParamsArticles = {
+      sources: this.getFormatedNewsSources(NEWS_SOURCES),
+      pageSize: 50,
+      page: 0
+    }
   }
 
   /**
@@ -64,6 +74,10 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
    * @param { TopHeadlines.IArticles[] } articles Array of articles
    */
   setArticles(articles: TopHeadlines.IArticles[]): void { this.state.articles = articles }
+
+  getFormatedNewsSources(sourceNames: string[]): string { return sourceNames.join(',') }
+
+  getFilteredNewsSources(sources: Sources.ISource[]): Sources.ISource[] { return sources.filter(source => NEWS_SOURCES.indexOf(source.id) !== -1) }
 
   searchArticles(source: string): void { this.newsApi.getTopHeadlineArticles({'sources': source}).subscribe(articles => { this.setArticles(articles) }); }  
 }
