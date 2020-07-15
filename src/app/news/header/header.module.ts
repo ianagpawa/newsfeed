@@ -2,8 +2,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToolbarModule } from 'primeng/toolbar';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
+
 import { HeaderComponent } from './header.component';
-import { FormlyComponentModule } from './formly/formly.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +15,9 @@ import { FormlyComponentModule } from './formly/formly.module';
   imports: [
     BrowserAnimationsModule,
     ToolbarModule,
-    FormlyComponentModule
+    ReactiveFormsModule,
+    FormlyModule.forRoot(),
+    FormlyBootstrapModule
   ],
   providers: [ ],
   bootstrap: [ HeaderComponent ],
