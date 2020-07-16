@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, OnDestroy, EventEmitter } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy, EventEmitter, Output } from '@angular/core';
 import { NewsApiService } from './news-api/news-api.service';
 import { News } from './news.interfaces';
 import { Sources, TopHeadlines } from './news-api/news.api.interfaces';
@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./news.component.css']
 })
 export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
+  @Output() headerInput: EventEmitter<any> = new EventEmitter();
   private state: News.IState;
   private subscriptions: Subscription[];
   private requestParamsArticles: TopHeadlines.IRequest;
@@ -24,7 +25,10 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
   /** Additional tasks after initialization. */
   ngAfterViewInit(): void {
     this.subscriptions.push(
-      this.newsApi.getSources().subscribe(sources => this.setSources(this.getFilteredNewsSources(sources)) ),
+      this.newsApi.getSources().subscribe(sources => {
+        this.setSources(this.getFilteredNewsSources(sources));
+        this.headerInput.emit({sources: this.getSources()});
+      }),
       this.newsApi.getTopHeadlineArticles(this.requestParamsArticles).subscribe(articles=> this.setArticles(articles))
     );
   }
