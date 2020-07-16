@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy, EventEmitter } from '@angular/core';
 import { NewsApiService } from './news-api/news-api.service';
 import { News } from './news.interfaces';
 import { Sources, TopHeadlines } from './news-api/news.api.interfaces';
@@ -80,4 +80,14 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
   getFilteredNewsSources(sources: Sources.ISource[]): Sources.ISource[] { return sources.filter(source => NEWS_SOURCES.indexOf(source.id) !== -1) }
 
   searchArticles(source: string): void { this.newsApi.getTopHeadlineArticles({'sources': source}).subscribe(articles => { this.setArticles(articles) }); }  
+
+  headerOutput(event) { 
+    console.log(event)
+    if (event.model) {
+      if (event.model.sources) {
+        this.requestParamsArticles.sources = event.model.sources;
+        this.newsApi.getTopHeadlineArticles(this.requestParamsArticles).subscribe(articles=> this.setArticles(articles));
+      }
+    }
+  }
 }
