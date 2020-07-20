@@ -48,11 +48,7 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.subscriptions = [];
 
-    this.requestParamsArticles = {
-      sources: this.getFormatedNewsSources(NEWS_SOURCES),
-      pageSize: 50,
-      page: 0
-    }
+    this.setDefaultRequestParams();
   }
 
   /**
@@ -86,12 +82,19 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
   searchArticles(source: string): void { this.newsApi.getTopHeadlineArticles({'sources': source}).subscribe(articles => { this.setArticles(articles) }); }  
 
   headerOutput(event) { 
-    console.log(event)
     if (event.model) {
-      if (event.model.sources) {
-        this.requestParamsArticles.sources = event.model.sources;
-        this.newsApi.getTopHeadlineArticles(this.requestParamsArticles).subscribe(articles=> this.setArticles(articles));
-      }
+      if (event.model.sources) { this.requestParamsArticles.sources = event.model.sources; }
+      if (event.model.search) { this.requestParamsArticles.q = event.model.search; }
+      if (!event.model.sources && !event.model.search) { this.setDefaultRequestParams(); }
+      this.newsApi.getTopHeadlineArticles(this.requestParamsArticles).subscribe(articles=> this.setArticles(articles));
+    }
+  }
+
+  setDefaultRequestParams() {
+    this.requestParamsArticles = {
+      sources: this.getFormatedNewsSources(NEWS_SOURCES),
+      pageSize: 50,
+      page: 0
     }
   }
 }

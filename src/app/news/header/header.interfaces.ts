@@ -2,10 +2,10 @@ import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 
 export namespace Header {
-    export interface IState {
+    export interface IFormly {
         form: FormGroup;
         model: IModel;
-        fields: FormlyFieldConfig[];
+        fields: any[];
     }
     
     export interface IModel {

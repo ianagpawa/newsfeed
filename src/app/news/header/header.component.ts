@@ -1,9 +1,9 @@
 import { Component, OnInit, Output, EventEmitter, OnDestroy, AfterViewInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Header } from './header.interfaces';
-import { FORMLY_FIELDS } from './header.config';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { Sources } from '../news-api/news.api.interfaces';
+import { FORMLY_FIELDS } from './header.config';
 
 @Component({
   selector: 'app-header',
@@ -13,16 +13,19 @@ import { Sources } from '../news-api/news.api.interfaces';
 export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() input: EventEmitter<any>;
   @Output() output: EventEmitter<any> = new EventEmitter();
-  private state: Header.IState;
-
+  formly: Header.IFormly;
+  
   constructor() { }
 
   ngOnInit(): void { this.initialize(); }
 
   initialize(): void {
-    this.state = {
+    this.formly = {
       form: new FormGroup({}),
-      model: { search: null, sources: [] },
+      model: { 
+        search: null, 
+        sources: null 
+      },
       fields: FORMLY_FIELDS
     }
   }
@@ -30,26 +33,42 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit(): void { 
     if (this.input) {
       this.input.subscribe( data => {
-        console.log('after', this.transformSources(data.sources));
+        this.formly.fields[1].templateOptions.options = this.transformSources(data.sources);
       })
     };
   }
 
   ngOnDestroy(): void { }
 
-  getStateForm() { return this.state.form }
+  getFormlyForm() { return this.formly.form }
 
-  setStateForm(form: any): void { this.state.form = new FormGroup(form) }
+  setFormlyForm(form: any): void { this.formly.form = new FormGroup(form) }
 
-  getStateFields() { return this.state.fields }
+  getFormlyFields() { return this.formly.fields }
 
-  setStateFields(fields: FormlyFieldConfig[]): void { this.state.fields = fields }
+  setFormlyFields(fields: FormlyFieldConfig[]): void { this.formly.fields = fields }
 
-  getStateModel() { return this.state.model }
+  getFormlyModel() { return this.formly.model }
 
-  setStateModel(model: Header.IModel): void { this.state.model = model }
+  setFormlyModel(model: Header.IModel): void { this.formly.model = model }
 
-  onSubmit(): void { this.output.emit( { model: this.getStateModel() }) }
+  onSubmit(): void { this.emitModel() }
+
+  onClear(): void { 
+    this.setDefaultModel();
+    this.emitModel(); 
+  }
+
+  setDefaultModel(): void {
+    this.formly.model = {
+      search: null,
+      sources: null
+    }
+  }
 
   transformSources(sources: Sources.ISource[]) { return sources.map(source => { return {value: source.id, label: source.name} }) }
+
+  modelChange(event): void { this.emitModel() }
+
+  emitModel():void  { this.output.emit( { model: this.getFormlyModel() }) }
 }

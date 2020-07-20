@@ -1,6 +1,6 @@
 import { FormlyFieldConfig } from '@ngx-formly/core';
 
-export const FORMLY_FIELDS: FormlyFieldConfig[] = [
+export const FORMLY_FIELDS = [
     {
       key: 'search',
       type: 'input',
@@ -16,13 +16,7 @@ export const FORMLY_FIELDS: FormlyFieldConfig[] = [
       templateOptions: {
         label: "News Sources",
         valueProp: "value",
-        options: [{
-          value: 'techcrunch',
-          label: "Tech Crunch"
-        }, {
-          value: 'bloomberg',
-          label: "Bloomberg"
-        }]
+        options: []
       }    
     }
-]
+];
