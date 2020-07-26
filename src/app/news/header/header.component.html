@@ -1,12 +1,9 @@
 <p-toolbar>
-    <div class="ui-toolbar-group-left">
-    </div>
     <form [formGroup]="formly.form">
         <formly-form [form]="formly.form" [fields]="formly.fields" [model]="formly.model" (modelChange)="modelChange($event)"></formly-form>
-        <button type="submit" class="btn btn-default" (click)=onSubmit()>Submit</button>
-        <button type="submit" class="btn btn-default" (click)=onClear()>Clear</button>
     </form>
     <div class="ui-toolbar-group-right">
-
+        <button type="button" class="btn btn-light" (click)=onClear()>Clear</button>
+        <button type="button" class="btn btn-primary" (click)=onSubmit()>Submit</button>
     </div>
 </p-toolbar>

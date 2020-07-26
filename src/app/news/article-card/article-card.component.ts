@@ -12,4 +12,11 @@ export class ArticleCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void { }
+
+  /**
+   * Gets path for news source icon by source id.
+   * @param { string } sourceId
+   * @returns { string }
+   */
+  getImage(sourceId: string): string { return `../assets/images/news/${sourceId}.png`; }
 }

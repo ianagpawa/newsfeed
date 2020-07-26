@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit(): void { 
     if (this.input) {
       this.input.subscribe( data => {
-        this.formly.fields[1].templateOptions.options = this.transformSources(data.sources);
+        this.formly.fields[0].templateOptions.options = this.transformSources(data.sources);
       })
     };
   }
