@@ -3,7 +3,6 @@ export const NEWS_SOURCES = [
     "al-jazeera-english",
     "ars-technica",
     "axios",
-    "bbc-news",
     "bleacher-report",
     "bloomberg",
     "breitbart-news",
