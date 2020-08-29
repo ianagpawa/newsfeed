@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NewsComponent } from './news.component';
 import { NewsApiService } from './news-api/news-api.service';
+import { NytimesApiService } from './nytimes-api/nytimes-api.service';
 import { ArticleCardModule } from './article-card/article-card.module';
 import { HeaderModule } from './header/header.module';
 
@@ -18,7 +19,10 @@ import { HeaderModule } from './header/header.module';
     ArticleCardModule,
     HeaderModule
   ],
-  providers: [ NewsApiService ],
+  providers: [ 
+    NewsApiService,
+    NytimesApiService
+  ],
   bootstrap: [ NewsComponent ],
   exports: [ NewsComponent ]
 })

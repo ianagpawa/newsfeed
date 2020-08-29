@@ -4,6 +4,7 @@ import { News } from './news.interfaces';
 import { Sources, TopHeadlines } from './news-api/news.api.interfaces';
 import { NEWS_SOURCES } from './news.constants';
 import { Subscription } from 'rxjs';
+import { NytimesApiService } from './nytimes-api/nytimes-api.service';
 
 @Component({
   selector: 'app-news',
@@ -17,13 +18,20 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
   private requestParamsArticles: TopHeadlines.IRequest;
   
   /** Constructor */
-  constructor(private newsApi: NewsApiService) { }
+  constructor(
+    private newsApi: NewsApiService,
+    private nytimesApi: NytimesApiService,
+    ) { }
 
   /** Initialize component. */
   ngOnInit(): void { this.initState() }
 
   /** Additional tasks after initialization. */
   ngAfterViewInit(): void {
+    this.nytimesApi.getRequest()
+      .then(data => {
+        console.log(data);
+      });
     this.subscriptions.push(
       this.newsApi.getSources().subscribe(sources => {
         this.setSources(this.getFilteredNewsSources(sources));
