@@ -8,9 +8,7 @@ import { ArticleCardComponent } from './article-card.component';
 
 
 @NgModule({
-  declarations: [
-    ArticleCardComponent
-  ],
+  declarations: [ ArticleCardComponent ],
   imports: [
     BrowserAnimationsModule,
     CardModule

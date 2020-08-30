@@ -1,12 +1,10 @@
 <a href="{{input.url}}" target="_blank">
-    <p-card styleClass="ui-card-shadow my-md-4">
-        <h3>
-            <!-- <img src="{{input.multimedia[1].url}}" width="50" height="50"> -->
+    <p-card styleClass="col-md-12 ui-card-shadow my-md-4">
+        <h3 class="my-4">
             <strong> {{input.title}}</strong>
+            <span class="ml-2 lead" *ngIf="input.byline"><em>{{ input.byline }}</em></span>
         </h3>
-        <p class="lead" *ngIf="input.byline"><em>{{ input.byline }}</em></p>
-        <p *ngIf="input.abstract">{{input.abstract}}</p>
-        <img src="{{input.multimedia[0].url}}" width="100%" height="100%">
-        <!-- <p-footer *ngIf="input.content || input.description"> Published: {{input.publishedAt}}</p-footer> -->
+        <img class="offset-md-1" src="{{input.multimedia[0].url}}" width="75%" height="75%">
+        <p class="my-4 text-center" *ngIf="input.abstract">{{input.abstract}}</p>
     </p-card>
 </a>

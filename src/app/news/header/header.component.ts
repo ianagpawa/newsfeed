@@ -1,10 +1,8 @@
-import { Component, OnInit, Output, EventEmitter, OnDestroy, AfterViewInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Header } from './header.interfaces';
 import { FormlyFieldConfig } from '@ngx-formly/core';
-import { Sources } from '../news-api/news.api.interfaces';
 import { FORMLY_FIELDS } from './header.config';
-import { SECTIONS } from '../nytimes-api/nytimes.constants';
 import { NYTimesApiService } from '../nytimes-api/nytimes-api.service';
 
 @Component({
@@ -13,8 +11,6 @@ import { NYTimesApiService } from '../nytimes-api/nytimes-api.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  @Input() input: EventEmitter<any>;
-  @Output() output: EventEmitter<any> = new EventEmitter();
   formly: Header.IFormly;
   
   constructor(private nyTimesAPIService: NYTimesApiService) { }
@@ -58,7 +54,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   onClear(): void { 
     this.setDefaultModel();
-    // this.emitModel(); 
   }
 
   setDefaultModel(): void {
@@ -68,13 +63,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
   }
 
-  // transformSources(sources: any[]) { return sources.map(source => { return {value: source.id, label: source.label} }) }
-
   modelChange(event): void {
-    console.log('event', this.getSources());
     this.nyTimesAPIService.setSection(this.getSources());
-    // this.emitModel(); 
   }
 
-  // emitModel():void  { this.output.emit( { model: this.getFormlyModel() }) }
 }
