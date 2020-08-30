@@ -4,7 +4,7 @@ import { TopHeadlines, Sources } from './news-api/news.api.interfaces';
 export namespace News {
     /** Interface for news component state prop. */
     export interface IState {
-        articles: TopHeadlines.IArticles[],
+        articles: any[],
         sources:  Sources.ISource[]
     }
 }

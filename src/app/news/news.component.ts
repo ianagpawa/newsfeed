@@ -28,16 +28,13 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   /** Additional tasks after initialization. */
   ngAfterViewInit(): void {
-    this.nytimesApi.getRequest()
-      .then(data => {
-        console.log(data);
-      });
     this.subscriptions.push(
       this.newsApi.getSources().subscribe(sources => {
         this.setSources(this.getFilteredNewsSources(sources));
         this.headerInput.emit({sources: this.getSources()});
       }),
-      this.newsApi.getTopHeadlineArticles(this.requestParamsArticles).subscribe(articles=> this.setArticles(articles))
+      // this.newsApi.getTopHeadlineArticles(this.requestParamsArticles).subscribe(articles=> this.setArticles(articles)),
+      this.nytimesApi.getRequest().subscribe(articles => this.setArticles(articles))
     );
   }
 
@@ -75,13 +72,13 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
    * Getter for articles prop in component state.
    * @returns { TopHeadlines.IArticles[] } Array of articles.
   */
-  getArticles(): TopHeadlines.IArticles[] { return this.state.articles }
+  getArticles(): any[] { return this.state.articles }
 
   /**
    * Setter for articles prop in component state.
    * @param { TopHeadlines.IArticles[] } articles Array of articles
    */
-  setArticles(articles: TopHeadlines.IArticles[]): void { this.state.articles = articles }
+  setArticles(articles: any[]): void { this.state.articles = articles }
 
   getFormatedNewsSources(sourceNames: string[]): string { return sourceNames.join(',') }
 

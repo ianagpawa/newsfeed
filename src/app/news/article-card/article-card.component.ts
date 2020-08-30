@@ -7,7 +7,7 @@ import { TopHeadlines } from '../news-api/news.api.interfaces';
   styleUrls: ['./article-card.component.css']
 })
 export class ArticleCardComponent implements OnInit {
-  @Input() input: TopHeadlines.IArticles;
+  @Input() input: any;
 
   constructor() { }
 

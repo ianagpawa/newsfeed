@@ -1,11 +1,11 @@
 <a href="{{input.url}}" target="_blank">
     <p-card styleClass="ui-card-shadow my-md-4">
         <h3>
-            <img src="{{getImage(input.source.id)}}" width="50" height="50">
+            <img src="{{input.multimedia[0].url}}" width="50" height="50">
             <strong> {{input.title}}</strong>
         </h3>
-        <p class="lead" *ngIf="input.description"><em>{{ input.description }}</em></p>
-        <p *ngIf="input.content">{{input.content}}</p>
-        <p-footer *ngIf="input.content || input.description"> Published: {{input.publishedAt}}</p-footer>
+        <p class="lead" *ngIf="input.byline"><em>{{ input.byline }}</em></p>
+        <p *ngIf="input.abstract">{{input.abstract}}</p>
+        <!-- <p-footer *ngIf="input.content || input.description"> Published: {{input.publishedAt}}</p-footer> -->
     </p-card>
 </a>
