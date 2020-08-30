@@ -48,5 +48,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 * https://getstream.io/
 
 
-ng build --prod --base-href "newsfeed"
+ng build --prod outputPath=docs --base-href "newsfeed"
 ngh
+
+change options master branch, docs
