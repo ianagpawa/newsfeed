@@ -46,3 +46,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 * Add searchbar, filter for news sources as dropdown menu / autocomplete
 * Twitter scroll
 * https://getstream.io/
+
+
+ng build --prod --base-href "newsfeed"
+ngh

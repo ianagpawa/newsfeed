@@ -29,10 +29,10 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
   /** Additional tasks after initialization. */
   ngAfterViewInit(): void {
     this.subscriptions.push(
-      this.newsApi.getSources().subscribe(sources => {
-        this.setSources(this.getFilteredNewsSources(sources));
-        this.headerInput.emit({sources: this.getSources()});
-      }),
+      // this.newsApi.getSources().subscribe(sources => {
+      //   this.setSources(this.getFilteredNewsSources(sources));
+      //   this.headerInput.emit({sources: this.getSources()});
+      // }),
       // this.newsApi.getTopHeadlineArticles(this.requestParamsArticles).subscribe(articles=> this.setArticles(articles)),
       this.nytimesApi.getRequest().subscribe(articles => this.setArticles(articles))
     );
@@ -48,7 +48,7 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
   initState(): void {
     this.state = {
       articles: null,
-      sources:  null
+      sources:  []
     };
 
     this.subscriptions = [];
