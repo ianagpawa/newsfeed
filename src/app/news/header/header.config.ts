@@ -1,7 +1,7 @@
 
 export const FORMLY_FIELDS = [
   {
-    key: "sources",
+    key: "section",
     type: "select",
     templateOptions: {
       label: "Sections",

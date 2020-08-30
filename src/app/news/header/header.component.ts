@@ -1,30 +1,28 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Header } from './header.interfaces';
-import { FormlyFieldConfig } from '@ngx-formly/core';
+import { IFormly, ISelectOption } from './header.interfaces';
 import { FORMLY_FIELDS } from './header.config';
 import { NYTimesApiService } from '../nytimes-api/nytimes-api.service';
+import { SECTIONS } from '../nytimes-api/nytimes.constants';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit, OnDestroy {
-  formly: Header.IFormly;
-  
+export class HeaderComponent implements OnInit {
+  formly: IFormly;
+
   constructor(private nyTimesAPIService: NYTimesApiService) { }
 
-  ngOnInit(): void {
-    this.initialize();
-  }
+  ngOnInit(): void { this.initialize(); }
 
   initialize(): void {
     this.formly = {
       form: new FormGroup({}),
-      model: { 
-        search: null, 
-        sources: null
+      model: {
+        search: null,
+        section: null
       },
       fields: FORMLY_FIELDS
     };
@@ -32,39 +30,24 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.formly.fields[0].templateOptions.options = this.nyTimesAPIService.getSections();
   }
 
-  ngOnDestroy(): void { }
+  getSection(): ISelectOption { return this.formly.model.section; }
 
-  getFormlyForm() { return this.formly.form }
-
-  setFormlyForm(form: any): void { this.formly.form = new FormGroup(form) }
-
-  getFormlyFields() { return this.formly.fields }
-
-  setFormlyFields(fields: FormlyFieldConfig[]): void { this.formly.fields = fields }
-
-  getFormlyModel() { return this.formly.model }
-
-  getSources() { return this.getFormlyModel().sources; }
-
-  setFormlyModel(model: Header.IModel): void { this.formly.model = model }
-
-  onSubmit(): void { 
-    // this.emitModel() 
+  onSubmit(): void {
+    // this.emitModel()
   }
 
-  onClear(): void { 
+  onClear(): void {
     this.setDefaultModel();
+    this.nyTimesAPIService.setSection(SECTIONS.HOME.id);
   }
 
   setDefaultModel(): void {
     this.formly.model = {
       search: null,
-      sources: null
-    }
+      section: null
+    };
   }
 
-  modelChange(event): void {
-    this.nyTimesAPIService.setSection(this.getSources());
-  }
+  modelChange(event): void { this.nyTimesAPIService.setSection(this.getSection()); }
 
 }
