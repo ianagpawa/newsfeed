@@ -33,7 +33,8 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit(): void { 
     if (this.input) {
       this.input.subscribe( data => {
-        this.formly.fields[0].templateOptions.options = this.transformSources(data.sources);
+        console.log('data sources', data.sources)
+        this.formly.fields[0].templateOptions.options = data.sources;
       })
     };
   }
@@ -66,7 +67,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  transformSources(sources: Sources.ISource[]) { return sources.map(source => { return {value: source.id, label: source.name} }) }
+  // transformSources(sources: any[]) { return sources.map(source => { return {value: source.id, label: source.label} }) }
 
   modelChange(event): void { this.emitModel() }
 

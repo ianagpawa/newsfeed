@@ -4,7 +4,7 @@ import { News } from './news.interfaces';
 import { Sources, TopHeadlines } from './news-api/news.api.interfaces';
 import { NEWS_SOURCES } from './news.constants';
 import { Subscription } from 'rxjs';
-import { NytimesApiService } from './nytimes-api/nytimes-api.service';
+import { NyTimesApiService } from './nytimes-api/nytimes-api.service';
 
 @Component({
   selector: 'app-news',
@@ -13,28 +13,29 @@ import { NytimesApiService } from './nytimes-api/nytimes-api.service';
 })
 export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
   @Output() headerInput: EventEmitter<any> = new EventEmitter();
-  private state: News.IState;
   private subscriptions: Subscription[];
   private requestParamsArticles: TopHeadlines.IRequest;
-  
+  private articles: any[];
+
   /** Constructor */
   constructor(
     private newsApi: NewsApiService,
-    private nytimesApi: NytimesApiService,
+    private nytimesApi: NyTimesApiService,
     ) { }
 
   /** Initialize component. */
-  ngOnInit(): void { this.initState() }
+  ngOnInit(): void { this.initState(); }
 
   /** Additional tasks after initialization. */
   ngAfterViewInit(): void {
+    this.headerInput.emit({sources: this.getSections()});
     this.subscriptions.push(
       // this.newsApi.getSources().subscribe(sources => {
       //   this.setSources(this.getFilteredNewsSources(sources));
       //   this.headerInput.emit({sources: this.getSources()});
       // }),
       // this.newsApi.getTopHeadlineArticles(this.requestParamsArticles).subscribe(articles=> this.setArticles(articles)),
-      this.nytimesApi.getRequest().subscribe(articles => this.setArticles(articles))
+      this.nytimesApi.getDefaultRequest().subscribe(articles => this.setArticles(articles))
     );
   }
 
@@ -46,43 +47,26 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   /** Initializes component state prop. */
   initState(): void {
-    this.state = {
-      articles: null,
-      sources:  []
-    };
-
+    this.articles = [];
     this.subscriptions = [];
-
-    this.setDefaultRequestParams();
   }
 
-  /**
-   * Getter for sources prop in component state.
-   * @returns { Sources.ISource[] } Array of sources.
-  */
-  getSources(): Sources.ISource[] { return this.state.sources }
 
-  /**
-   *  Setter for sources prop in component state.
-   * @param { Sources.ISource[] } sources Array for sources.
-   */
-  setSources(sources: Sources.ISource[]): void { this.state.sources = sources }
+  getSections(): any[] { return this.nytimesApi.getSections(); }
 
   /**
    * Getter for articles prop in component state.
-   * @returns { TopHeadlines.IArticles[] } Array of articles.
+   * @returns {  } Array of articles.
   */
-  getArticles(): any[] { return this.state.articles }
+  getArticles(): any[] { return this.articles; }
 
   /**
    * Setter for articles prop in component state.
-   * @param { TopHeadlines.IArticles[] } articles Array of articles
+   * @param { } articles Array of articles
    */
-  setArticles(articles: any[]): void { this.state.articles = articles }
+  setArticles(articles: any[]): void { this.articles = articles; }
 
-  getFormatedNewsSources(sourceNames: string[]): string { return sourceNames.join(',') }
-
-  getFilteredNewsSources(sources: Sources.ISource[]): Sources.ISource[] { return sources.filter(source => NEWS_SOURCES.indexOf(source.id) !== -1) }
+  getFormatedNewsSources(sourceNames: string[]): string { return sourceNames.join(','); }
 
   searchArticles(source: string): void { this.newsApi.getTopHeadlineArticles({'sources': source}).subscribe(articles => { this.setArticles(articles) }); }  
 
@@ -90,16 +74,9 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
     if (event.model) {
       if (event.model.sources) { this.requestParamsArticles.sources = event.model.sources; }
       if (event.model.search) { this.requestParamsArticles.q = event.model.search; }
-      if (!event.model.sources && !event.model.search) { this.setDefaultRequestParams(); }
-      this.newsApi.getTopHeadlineArticles(this.requestParamsArticles).subscribe(articles=> this.setArticles(articles));
+      // if (!event.model.sources && !event.model.search) { this.setDefaultRequestParams(); }
+      // this.newsApi.getTopHeadlineArticles(this.requestParamsArticles).subscribe(articles=> this.setArticles(articles));
     }
   }
 
-  setDefaultRequestParams() {
-    this.requestParamsArticles = {
-      sources: this.getFormatedNewsSources(NEWS_SOURCES),
-      pageSize: 50,
-      page: 0
-    }
-  }
 }
