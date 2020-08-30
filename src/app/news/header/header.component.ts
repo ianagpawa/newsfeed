@@ -4,39 +4,36 @@ import { Header } from './header.interfaces';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { Sources } from '../news-api/news.api.interfaces';
 import { FORMLY_FIELDS } from './header.config';
+import { SECTIONS } from '../nytimes-api/nytimes.constants';
+import { NYTimesApiService } from '../nytimes-api/nytimes-api.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
+export class HeaderComponent implements OnInit, OnDestroy {
   @Input() input: EventEmitter<any>;
   @Output() output: EventEmitter<any> = new EventEmitter();
   formly: Header.IFormly;
   
-  constructor() { }
+  constructor(private nyTimesAPIService: NYTimesApiService) { }
 
-  ngOnInit(): void { this.initialize(); }
+  ngOnInit(): void {
+    this.initialize();
+  }
 
   initialize(): void {
     this.formly = {
       form: new FormGroup({}),
       model: { 
         search: null, 
-        sources: null 
+        sources: null
       },
       fields: FORMLY_FIELDS
-    }
-  }
-
-  ngAfterViewInit(): void { 
-    if (this.input) {
-      this.input.subscribe( data => {
-        console.log('data sources', data.sources)
-        this.formly.fields[0].templateOptions.options = data.sources;
-      })
     };
+
+    this.formly.fields[0].templateOptions.options = this.nyTimesAPIService.getSections();
   }
 
   ngOnDestroy(): void { }
@@ -51,13 +48,17 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
   getFormlyModel() { return this.formly.model }
 
+  getSources() { return this.getFormlyModel().sources; }
+
   setFormlyModel(model: Header.IModel): void { this.formly.model = model }
 
-  onSubmit(): void { this.emitModel() }
+  onSubmit(): void { 
+    // this.emitModel() 
+  }
 
   onClear(): void { 
     this.setDefaultModel();
-    this.emitModel(); 
+    // this.emitModel(); 
   }
 
   setDefaultModel(): void {
@@ -69,7 +70,11 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // transformSources(sources: any[]) { return sources.map(source => { return {value: source.id, label: source.label} }) }
 
-  modelChange(event): void { this.emitModel() }
+  modelChange(event): void {
+    console.log('event', this.getSources());
+    this.nyTimesAPIService.setSection(this.getSources());
+    // this.emitModel(); 
+  }
 
-  emitModel():void  { this.output.emit( { model: this.getFormlyModel() }) }
+  // emitModel():void  { this.output.emit( { model: this.getFormlyModel() }) }
 }

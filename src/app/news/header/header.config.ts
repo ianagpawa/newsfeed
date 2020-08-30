@@ -5,7 +5,7 @@ export const FORMLY_FIELDS = [
     type: "select",
     templateOptions: {
       label: "Sections",
-      valueProp: "value",
+      valueProp: "id",
       options: []
     }    
   },

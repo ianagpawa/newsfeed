@@ -4,7 +4,8 @@ import { News } from './news.interfaces';
 import { Sources, TopHeadlines } from './news-api/news.api.interfaces';
 import { NEWS_SOURCES } from './news.constants';
 import { Subscription } from 'rxjs';
-import { NyTimesApiService } from './nytimes-api/nytimes-api.service';
+import { NYTimesApiService } from './nytimes-api/nytimes-api.service';
+import { mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-news',
@@ -20,7 +21,7 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
   /** Constructor */
   constructor(
     private newsApi: NewsApiService,
-    private nytimesApi: NyTimesApiService,
+    private nytimesApi: NYTimesApiService,
     ) { }
 
   /** Initialize component. */
@@ -35,7 +36,15 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
       //   this.headerInput.emit({sources: this.getSources()});
       // }),
       // this.newsApi.getTopHeadlineArticles(this.requestParamsArticles).subscribe(articles=> this.setArticles(articles)),
-      this.nytimesApi.getDefaultRequest().subscribe(articles => this.setArticles(articles))
+      // this.nytimesApi.getDefaultRequest().subscribe(articles => this.setArticles(articles))
+      this.nytimesApi.articles.subscribe(
+        articles =>  {
+          console.log('articles', articles);
+          articles.subscribe((data) => {
+            this.setArticles(data)
+          })
+        })
+
     );
   }
 
