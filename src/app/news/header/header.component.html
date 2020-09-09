@@ -1,4 +1,11 @@
-<p-toolbar>
+<h1>NewsFeed</h1>
+<p-menubar [model]="items">
+    <div>
+        <input type="text" pInputText placeholder="Search">
+    </div>
+</p-menubar>
+
+<!-- <p-toolbar>
     <form [formGroup]="formly.form">
         <formly-form [form]="formly.form" [fields]="formly.fields" [model]="formly.model" (modelChange)="modelChange($event)"></formly-form>
     </form>
@@ -6,4 +13,4 @@
         <button type="button" class="btn btn-light" (click)=onClear()>Clear</button>
         <button type="button" class="btn btn-primary" (click)=onSubmit()>Submit</button>
     </div>
-</p-toolbar>
+</p-toolbar> -->

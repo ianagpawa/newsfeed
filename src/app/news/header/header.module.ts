@@ -5,6 +5,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
+import { MenubarModule } from 'primeng/menubar';
 
 import { HeaderComponent } from './header.component';
 
@@ -17,7 +18,8 @@ import { HeaderComponent } from './header.component';
     ToolbarModule,
     ReactiveFormsModule,
     FormlyModule.forRoot(),
-    FormlyBootstrapModule
+    FormlyBootstrapModule,
+    MenubarModule
   ],
   providers: [ ],
   bootstrap: [ HeaderComponent ],

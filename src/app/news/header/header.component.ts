@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { MenuItem } from 'primeng/api';
+
 import { IFormly, ISelectOption } from './header.interfaces';
 import { FORMLY_FIELDS } from './header.config';
 import { NYTimesApiService } from '../nytimes-api/nytimes-api.service';
@@ -12,6 +14,7 @@ import { SECTIONS } from '../nytimes-api/nytimes.constants';
 })
 export class HeaderComponent implements OnInit {
   formly: IFormly;
+  items: MenuItem[];
 
   constructor(private nyTimesAPIService: NYTimesApiService) { }
 
@@ -28,6 +31,35 @@ export class HeaderComponent implements OnInit {
     };
 
     this.formly.fields[0].templateOptions.options = this.nyTimesAPIService.getSections();
+
+    this.items = [
+      {
+        icon:'pi pi-fw pi-info-circle',
+        items:[
+            {
+              label:'Ian Agpawa',
+            },
+            {
+              separator:true
+            },
+            {
+              label: 'Github',
+              icon: 'pi pi-fw pi-github',
+              url: 'https://github.com/ianagpawa'
+            },
+            {
+              label:'Portfolio',
+              icon:'pi pi-fw pi-palette',
+              url: 'https://ianagpawa.github.io/ng-portfolio'
+            },
+            {
+              label:'LinkedIn',
+              icon:'pi pi-fw pi-id-card',
+              url: 'https://www.linkedin.com/in/ianagpawa'
+            },
+        ]
+      },
+    ];
   }
 
   getSection(): ISelectOption { return this.formly.model.section; }
