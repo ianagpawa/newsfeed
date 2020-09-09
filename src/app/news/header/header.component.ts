@@ -56,7 +56,7 @@ export class HeaderComponent implements OnInit {
               label:'LinkedIn',
               icon:'pi pi-fw pi-id-card',
               url: 'https://www.linkedin.com/in/ianagpawa'
-            },
+            }
         ]
       },
     ];
