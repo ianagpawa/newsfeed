@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { NYTimesApiService } from './news/nytimes-api/nytimes-api.service';
+import { NYTimesApiService } from './nytimes-api/nytimes-api.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent  {
   private subscriptions: Subscription[];
