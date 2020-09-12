@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { NytimesApiService } from './nytimes-api.service';
+import { NYTimesApiService } from './nytimes-api.service';
 
 describe('NytimesApiService', () => {
-  let service: NytimesApiService;
+  let service: NYTimesApiService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(NytimesApiService);
+    service = TestBed.inject(NYTimesApiService);
   });
 
   it('should be created', () => {
