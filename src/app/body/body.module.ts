@@ -2,13 +2,19 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { BodyComponent } from './body.component';
-import { StoryCardModule } from './story-card/story-card.module';
+import { StoryCardComponent } from './story-card/story-card.component';
+import { FeaturedStoryComponent } from './featured-story/featured-story.component';
+import { PopularStoryComponent } from './popular-story/popular-story.component';
 
 @NgModule({
-  declarations: [ BodyComponent ],
+  declarations: [ 
+    BodyComponent, 
+    StoryCardComponent,
+    FeaturedStoryComponent, 
+    PopularStoryComponent
+  ],
   imports: [
-    BrowserModule,
-    StoryCardModule
+    BrowserModule
   ],
   exports: [ BodyComponent ],
   providers: [  ],
