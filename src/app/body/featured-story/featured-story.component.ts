@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'featured-story',
@@ -6,6 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./featured-story.component.scss']
 })
 export class FeaturedStoryComponent implements OnInit {
+  @Input() title: string;
+  @Input() articleUrl: string;
+  @Input() imageUrl: string;
+  @Input() section: string;
+  @Input() publishedDate: string;
 
   constructor() { }
 

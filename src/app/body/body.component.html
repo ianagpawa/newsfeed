@@ -5,7 +5,15 @@
         <div class="row mt-5">
             <div class="col-12 col-lg-8">
                 <div class="blog-posts-area">
-                    <story-card *ngFor="let i of [0,1,2,3]"></story-card>
+                    <story-card *ngFor="let story of stories"
+                        [title]="story.title"
+                        [articleUrl]="story.short_url"
+                        [imageUrl]="story.multimedia[0].url"
+                        [abstract]="story.abstract"
+                        [byline]="story.byline"
+                        [section]="story.section"
+                    >
+                    </story-card>
                 </div>
 
                 <!-- Pagination -->
@@ -27,7 +35,14 @@
 
                     <!-- Latest Posts Widget -->
                     <div class="latest-posts-widget mb-50">
-                        <featured-story *ngFor="let i of [0,1,2,3,4,5,6]"></featured-story>
+                        <featured-story *ngFor="let story of featured"
+                            [title]="story.title"
+                            [articleUrl]="story.short_url"
+                            [imageUrl]="story.multimedia[2].url"
+                            [publishedDate]="story.published_date"
+                            [section]="story.section"
+                        >
+                        </featured-story>
                     </div>
 
                     <!-- Popular News Widget -->
