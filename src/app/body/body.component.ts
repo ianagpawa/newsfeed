@@ -8,9 +8,10 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./body.component.scss']
 })
 export class BodyComponent implements OnInit, AfterViewInit, OnDestroy {
-  stories;
-  featured;
+  stories: any[];
+  featured: any[];
   subscriptions: Subscription[];
+
   constructor(private nyTimesApiService: NYTimesApiService) { }
 
   ngOnInit(): void {
@@ -31,6 +32,7 @@ export class BodyComponent implements OnInit, AfterViewInit, OnDestroy {
       this.nyTimesApiService.featured.subscribe(
         articles =>  {
           articles.subscribe((data) => {
+            console.log('data', data)
             this.featured = data;
           })
         }
@@ -42,6 +44,5 @@ export class BodyComponent implements OnInit, AfterViewInit, OnDestroy {
     this.subscriptions.forEach(x => x.unsubscribe() );
     this.subscriptions = [];
   }
-
 
 }

@@ -38,7 +38,7 @@
                         <featured-story *ngFor="let story of featured"
                             [title]="story.title"
                             [articleUrl]="story.short_url"
-                            [imageUrl]="story.multimedia[2].url"
+                            [imageUrl]="story.media[0]['media-metadata'][0].url"
                             [publishedDate]="story.published_date"
                             [section]="story.section"
                         >

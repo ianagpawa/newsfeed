@@ -9,20 +9,28 @@ import { SECTIONS } from './nytimes.constants';
 })
 export class NYTimesApiService {
   private key: string = 'GhN0umQfQsxxUdqq9BcZzKCKMG26hFJ8';
-  private topStoriesUrl: string = 'https://api.nytimes.com/svc/topstories/v2/';
-  @Output() stories: BehaviorSubject<any> = new BehaviorSubject(this.getRequest(SECTIONS.HOME.id));
-  @Output() featured: BehaviorSubject<any> = new BehaviorSubject(this.getRequest(SECTIONS.NYREGION.id));
+  @Output() stories: BehaviorSubject<any> = this.getTopStoriesRequest();
+  @Output() featured: BehaviorSubject<any> = this.getMostPopularRequest();
 
   constructor(private http: HttpClient) { }
 
-  getRequest(section: string): Observable<any> {
-    return this.http.get(`${this.topStoriesUrl}${section}.json?api-key=${this.key}`)
+  getRequest(url: string): Observable<any> {
+    return this.http.get(url)
       .pipe(
         map((requestResponse: any) => requestResponse.results.slice(0,10)));
     }
 
-  getSections(): any[] { return Object.keys(SECTIONS).map(key => SECTIONS[key]); }
 
-  getArticlesBySection(id): void { this.stories.next(this.getRequest(id)); }
+  getArticlesBySection(id): void { this.stories.next(this.getTopStoriesUrl(id)); }
+
+  getUrl(apiName: string): string { return `https://api.nytimes.com/svc/${apiName}/v2/`; }
+
+  getTopStoriesUrl(section: string): string { return `${this.getUrl('topstories')}${section}.json?api-key=${this.key}`; }
+
+  getMostPopularUrl(type: string): string { return `${this.getUrl('mostpopular')}${type}/7.json?api-key=${this.key}`; }
+
+  getTopStoriesRequest(section?: string) { return new BehaviorSubject(this.getRequest(this.getTopStoriesUrl(section || SECTIONS.HOME.id))); }
+
+  getMostPopularRequest() { return new BehaviorSubject(this.getRequest(this.getMostPopularUrl('viewed'))); }
 
 }

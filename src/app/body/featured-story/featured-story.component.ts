@@ -14,7 +14,6 @@ export class FeaturedStoryComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
 }
