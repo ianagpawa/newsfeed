@@ -51,7 +51,9 @@
                         <!-- Nav Start -->
                         <div class="classynav">
                             <ul>
-                                <li class="active" *ngFor="let section of sections" (click)="onClick(section.id)"><a>{{section.label}}</a></li>
+                                <li class="section" [ngClass]="{ 'active': selectedSection === section.id }" (click)="onClick(section.id)" *ngFor="let section of sections">
+                                    <a>{{section.label}}</a>
+                                </li>
                             </ul>
                         </div>
                         <!-- Nav End -->

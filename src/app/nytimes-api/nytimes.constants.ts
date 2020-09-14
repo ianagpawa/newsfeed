@@ -1,4 +1,8 @@
 export const SECTIONS = {
+    HOME: {
+        id: 'home',
+        label: 'Home'
+    },
     ARTS: {
         id: 'arts',
         label: 'Arts'
@@ -26,10 +30,6 @@ export const SECTIONS = {
     HEALTH: {
         id: 'health',
         label: 'Health'
-    },
-    HOME: {
-        id: 'home',
-        label: 'Home'
     },
     // INSIDER: {
     //     id: 'insider',

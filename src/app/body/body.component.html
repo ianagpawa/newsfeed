@@ -37,7 +37,7 @@
                     <div class="latest-posts-widget mb-50">
                         <featured-story *ngFor="let story of popular"
                             [title]="story.title"
-                            [articleUrl]="story.short_url"
+                            [articleUrl]="story.url"
                             [imageUrl]="getImageUrl(story)"
                             [section]="story.section"
                         >

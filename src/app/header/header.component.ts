@@ -9,13 +9,18 @@ import { SECTIONS } from '../nytimes-api/nytimes.constants';
 })
 export class HeaderComponent implements OnInit {
   sections: any[];
+  selectedSection: string;
 
   constructor(private nyTimesApiService: NYTimesApiService) { }
 
   ngOnInit(): void {
     this.sections = Object.keys(SECTIONS).map(key => SECTIONS[key] );
+    this.selectedSection = 'home';
   }
 
-  onClick(sectionId: string) { return this.nyTimesApiService.getArticlesBySection(sectionId); }
+  onClick(sectionId: string): void { 
+    this.selectedSection = sectionId;
+    this.nyTimesApiService.getArticlesBySection(sectionId); 
+  }
 
 }
