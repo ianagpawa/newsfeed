@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { NYTimesApiService } from '../nytimes-api/nytimes-api.service';
 import { Subscription } from 'rxjs';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-body',
@@ -62,4 +63,7 @@ export class BodyComponent implements OnInit, AfterViewInit, OnDestroy {
       && story.media[0]['media-metadata'][0].url;
   }
 
+  getFormattedDate(date: string): string {
+    return moment(date).format('MMMM Do')
+  }
 }

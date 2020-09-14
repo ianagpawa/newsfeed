@@ -46,12 +46,12 @@
 
                     <!-- Popular News Widget -->
                     <div class="popular-news-widget mb-50">
-                        <h3>News Around New York</h3>
+                        <h3>Around New York</h3>
 
                         <popular-story *ngFor="let story of nyregion; let i = index"
                             [title]="story.title"
                             [articleUrl]="story.short_url"
-                            [publishedDate]="story.published_date"
+                            [publishedDate]="getFormattedDate(story.published_date)"
                             [num]="i+1"
                         >
                         </popular-story>
