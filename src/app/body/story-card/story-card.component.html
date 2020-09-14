@@ -1,0 +1,18 @@
+<div class="single-blog-post featured-post mb-30">
+    <div class="post-thumb">
+        <figure>
+            <a href="{{articleUrl}}" target="_blank"><img src="{{imageUrl}}" alt=""></a>
+            <figcaption>{{caption}}</figcaption>
+        </figure>
+    </div>
+    <div class="post-data">
+        <span class="post-catagory">{{section}}</span>
+        <a href="{{articleUrl}}" class="post-title">
+            <h6>{{title}}</h6>
+        </a>
+        <div class="post-meta">
+            <p *ngIf="byline" class="post-author">{{byline}}</p>
+            <p class="post-excerp">{{abstract}}</p>
+        </div>
+    </div>
+</div>

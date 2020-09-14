@@ -1,0 +1,66 @@
+<!-- ##### Blog Area Start ##### -->
+<div class="blog-area section-padding-0-80">
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-12 col-lg-8">
+                <div class="blog-posts-area">
+                    <story-card *ngFor="let story of stories"
+                        [title]="story.title"
+                        [articleUrl]="story.short_url"
+                        [imageUrl]="story.multimedia[0].url"
+                        [abstract]="story.abstract"
+                        [byline]="story.byline"
+                        [section]="story.section"
+                        [caption]="story.multimedia[0].caption"
+                    >
+                    </story-card>
+                </div>
+
+                <!-- Pagination -->
+                <!-- <nav aria-label="Page navigation example">
+                    <ul class="pagination mt-50">
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                        <li class="page-item"><a class="page-link" href="#">5</a></li>
+                        <li class="page-item"><a class="page-link" href="#">...</a></li>
+                        <li class="page-item"><a class="page-link" href="#">10</a></li>
+                    </ul>
+                </nav> -->
+            </div>
+
+            <div class="col-12 col-lg-4">
+                <div class="blog-sidebar-area">
+
+                    <!-- Latest Posts Widget -->
+                    <div class="latest-posts-widget mb-50">
+                        <featured-story *ngFor="let story of popular"
+                            [title]="story.title"
+                            [articleUrl]="story.url"
+                            [imageUrl]="getImageUrl(story)"
+                            [section]="story.section"
+                        >
+                        </featured-story>
+                    </div>
+
+                    <!-- Popular News Widget -->
+                    <div class="popular-news-widget mb-50">
+                        <h3>Around New York</h3>
+
+                        <popular-story *ngFor="let story of nyregion; let i = index"
+                            [title]="story.title"
+                            [articleUrl]="story.short_url"
+                            [publishedDate]="getFormattedDate(story.published_date)"
+                            [num]="i+1"
+                        >
+                        </popular-story>
+                        <!-- Single Popular Blog -->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ##### Blog Area End ##### -->
