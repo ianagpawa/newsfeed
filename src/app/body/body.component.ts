@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 export class BodyComponent implements OnInit, AfterViewInit, OnDestroy {
   stories: any[];
   featured: any[];
+  popular: any[];
   subscriptions: Subscription[];
 
   constructor(private nyTimesApiService: NYTimesApiService) { }
@@ -17,6 +18,7 @@ export class BodyComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
     this.stories = [];
     this.featured =[];
+    this.popular = [];
     this.subscriptions = [];
   }
 
@@ -32,8 +34,14 @@ export class BodyComponent implements OnInit, AfterViewInit, OnDestroy {
       this.nyTimesApiService.featured.subscribe(
         articles =>  {
           articles.subscribe((data) => {
-            console.log('data', data)
             this.featured = data;
+          })
+        }
+      ),
+      this.nyTimesApiService.popular.subscribe(
+        articles =>  {
+          articles.subscribe((data) => {
+            this.popular = data;
           })
         }
       )

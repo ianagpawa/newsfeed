@@ -1,11 +1,13 @@
-<!-- Single Featured Post -->
 <div class="single-blog-post featured-post mb-30">
     <div class="post-thumb">
-        <a href="{{articleUrl}}" target="_blank"><img src="{{imageUrl}}" alt=""></a>
+        <figure>
+            <a href="{{articleUrl}}" target="_blank"><img src="{{imageUrl}}" alt=""></a>
+            <figcaption>{{caption}}</figcaption>
+        </figure>
     </div>
     <div class="post-data">
-        <a href="#" class="post-catagory">{{section}}</a>
-        <a href="#" class="post-title">
+        <span class="post-catagory">{{section}}</span>
+        <a href="{{articleUrl}}" class="post-title">
             <h6>{{title}}</h6>
         </a>
         <div class="post-meta">

@@ -12,6 +12,7 @@ export class StoryCardComponent implements OnInit {
   @Input() abstract: string;
   @Input() byline: string;
   @Input() section: string;
+  @Input() caption: string;
 
   constructor() { }
 

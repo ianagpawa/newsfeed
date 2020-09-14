@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'popular-story',
@@ -6,6 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./popular-story.component.scss']
 })
 export class PopularStoryComponent implements OnInit {
+  @Input() title: string;
+  @Input() articleUrl: string;
+  @Input() publishedDate: string;
+  @Input() num: string;
 
   constructor() { }
 

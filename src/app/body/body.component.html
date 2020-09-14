@@ -12,6 +12,7 @@
                         [abstract]="story.abstract"
                         [byline]="story.byline"
                         [section]="story.section"
+                        [caption]="story.multimedia[0].caption"
                     >
                     </story-card>
                 </div>
@@ -38,8 +39,7 @@
                         <featured-story *ngFor="let story of featured"
                             [title]="story.title"
                             [articleUrl]="story.short_url"
-                            [imageUrl]="story.media[0]['media-metadata'][0].url"
-                            [publishedDate]="story.published_date"
+                            [imageUrl]="story.multimedia[2].url"
                             [section]="story.section"
                         >
                         </featured-story>
@@ -49,7 +49,13 @@
                     <div class="popular-news-widget mb-50">
                         <h3>4 Most Popular News</h3>
 
-                        <popular-story *ngFor="let i of [0,1,2,3]"></popular-story>
+                        <popular-story *ngFor="let story of popular; let i = index"
+                            [title]="story.title"
+                            [articleUrl]="story.short_url"
+                            [publishedDate]="story.published_date"
+                            [num]="i+1"
+                        >
+                        </popular-story>
                         <!-- Single Popular Blog -->
                     </div>
 

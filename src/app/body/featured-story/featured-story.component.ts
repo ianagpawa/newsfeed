@@ -10,7 +10,6 @@ export class FeaturedStoryComponent implements OnInit {
   @Input() articleUrl: string;
   @Input() imageUrl: string;
   @Input() section: string;
-  @Input() publishedDate: string;
 
   constructor() { }
 
