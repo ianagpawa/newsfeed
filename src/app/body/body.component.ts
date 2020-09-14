@@ -27,6 +27,7 @@ export class BodyComponent implements OnInit, AfterViewInit, OnDestroy {
       this.nyTimesApiService.stories.subscribe(
         articles =>  {
           articles.subscribe((data) => {
+            console.log(data);
             this.stories = data;
           })
         }

@@ -3,14 +3,14 @@ export const SECTIONS = {
         id: 'arts',
         label: 'Arts'
     },
-    AUTOMOBILES: {
-        id: 'automobiles',
-        label: 'Automobiles'
-    },
-    BOOKS: {
-        id: 'books',
-        label: 'Books'
-    },
+    // AUTOMOBILES: {
+    //     id: 'automobiles',
+    //     label: 'Automobiles'
+    // },
+    // BOOKS: {
+    //     id: 'books',
+    //     label: 'Books'
+    // },
     BUSINESS: {
         id: 'business',
         label: 'Business'
@@ -19,10 +19,10 @@ export const SECTIONS = {
         id: 'fashion',
         label: 'Fashion'
     },
-    FOOD: {
-        id: 'food',
-        label: 'Food'
-    },
+    // FOOD: {
+    //     id: 'food',
+    //     label: 'Food'
+    // },
     HEALTH: {
         id: 'health',
         label: 'Health'
@@ -31,38 +31,38 @@ export const SECTIONS = {
         id: 'home',
         label: 'Home'
     },
-    INSIDER: {
-        id: 'insider',
-        label: 'Insider'
-    },
-    MAGAZINE: {
-        id: 'magazine',
-        label: 'Magazine'
-    },
-    MOVIES: {
-        id: 'movies',
-        label: 'Movies'
-    },
-    NYREGION: {
-        id: 'nyregion',
-        label: 'NY Region'
-    },
-    OBITUARIES: {
-        id: 'obituaries',
-        label: 'Obituaries'
-    },
-    OPINION: {
-        id: 'opinion',
-        label: 'Opinion'
-    },
+    // INSIDER: {
+    //     id: 'insider',
+    //     label: 'Insider'
+    // },
+    // MAGAZINE: {
+    //     id: 'magazine',
+    //     label: 'Magazine'
+    // },
+    // MOVIES: {
+    //     id: 'movies',
+    //     label: 'Movies'
+    // },
+    // NYREGION: {
+    //     id: 'nyregion',
+    //     label: 'NY Region'
+    // },
+    // OBITUARIES: {
+    //     id: 'obituaries',
+    //     label: 'Obituaries'
+    // },
+    // OPINION: {
+    //     id: 'opinion',
+    //     label: 'Opinion'
+    // },
     POLITICS: {
         id: 'politics',
         label: 'Politics'
     },
-    REALESTATE: {
-        id: 'realestate',
-        label: 'Real Estate'
-    },
+    // REALESTATE: {
+    //     id: 'realestate',
+    //     label: 'Real Estate'
+    // },
     SCIENCE: {
         id: 'science',
         label: 'Science'
@@ -71,30 +71,30 @@ export const SECTIONS = {
         id: 'sports',
         label: 'Sports'
     },
-    SUNDAYREVIEW: {
-        id: 'sundayreview',
-        label: 'Sunday Review'
-    },
+    // SUNDAYREVIEW: {
+    //     id: 'sundayreview',
+    //     label: 'Sunday Review'
+    // },
     TECHNOLOGY: {
         id: 'technology',
         label: 'Technology'
     },
-    THEATER: {
-        id: 'theater',
-        label: 'Theater'
-    },
-    TMAGANIZE: {
-        id: 't-magazine',
-        label: 'Times Magazine'
-    },
+    // THEATER: {
+    //     id: 'theater',
+    //     label: 'Theater'
+    // },
+    // TMAGANIZE: {
+    //     id: 't-magazine',
+    //     label: 'Times Magazine'
+    // },
     TRAVEL: {
         id: 'travel',
         label: 'Travel'
     },
-    UPSHOT: {
-        id: 'upshot',
-        label: 'Upshot'
-    },
+    // UPSHOT: {
+    //     id: 'upshot',
+    //     label: 'Upshot'
+    // },
     US: {
         id: 'us',
         label: 'US'
@@ -104,5 +104,3 @@ export const SECTIONS = {
         label: 'World'
     }
 }
-
-

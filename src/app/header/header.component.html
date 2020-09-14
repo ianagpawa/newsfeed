@@ -13,15 +13,15 @@
                         </div>
 
                         <!-- Login Search Area -->
-                        <div class="login-search-area d-flex align-items-center">
+                        <!-- <div class="login-search-area d-flex align-items-center"> -->
                             <!-- Search Form -->
-                            <div class="search-form">
+                            <!-- <div class="search-form">
                                 <form action="#" method="post">
                                     <input type="search" name="search" class="form-control" placeholder="Search">
                                     <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                                 </form>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -51,14 +51,7 @@
                         <!-- Nav Start -->
                         <div class="classynav">
                             <ul>
-                                <li class="active"><a href="index.html">Home</a></li>
-                                <li><a href="#">Politics</a></li>
-                                <li><a href="#">Breaking News</a></li>
-                                <li><a href="#">Business</a></li>
-                                <li><a href="#">Technology</a></li>
-                                <li><a href="#">Health</a></li>
-                                <li><a href="#">Travel</a></li>
-                                <li><a href="#">Sports</a></li>
+                                <li class="active" *ngFor="let section of sections" (click)="onClick(section.id)"><a>{{section.label}}</a></li>
                             </ul>
                         </div>
                         <!-- Nav End -->
