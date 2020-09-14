@@ -36,10 +36,10 @@
 
                     <!-- Latest Posts Widget -->
                     <div class="latest-posts-widget mb-50">
-                        <featured-story *ngFor="let story of featured"
+                        <featured-story *ngFor="let story of popular"
                             [title]="story.title"
                             [articleUrl]="story.short_url"
-                            [imageUrl]="story.multimedia[2].url"
+                            [imageUrl]="getImageUrl(story)"
                             [section]="story.section"
                         >
                         </featured-story>
@@ -47,9 +47,9 @@
 
                     <!-- Popular News Widget -->
                     <div class="popular-news-widget mb-50">
-                        <h3>4 Most Popular News</h3>
+                        <h3>News Around New York</h3>
 
-                        <popular-story *ngFor="let story of popular; let i = index"
+                        <popular-story *ngFor="let story of nyregion; let i = index"
                             [title]="story.title"
                             [articleUrl]="story.short_url"
                             [publishedDate]="story.published_date"

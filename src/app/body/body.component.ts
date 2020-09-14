@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
 })
 export class BodyComponent implements OnInit, AfterViewInit, OnDestroy {
   stories: any[];
-  featured: any[];
+  nyregion: any[];
   popular: any[];
   subscriptions: Subscription[];
 
@@ -17,7 +17,7 @@ export class BodyComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit(): void {
     this.stories = [];
-    this.featured =[];
+    this.nyregion =[];
     this.popular = [];
     this.subscriptions = [];
   }
@@ -31,10 +31,10 @@ export class BodyComponent implements OnInit, AfterViewInit, OnDestroy {
           })
         }
       ),
-      this.nyTimesApiService.featured.subscribe(
+      this.nyTimesApiService.nyregion.subscribe(
         articles =>  {
           articles.subscribe((data) => {
-            this.featured = data;
+            this.nyregion = data;
           })
         }
       ),
@@ -51,6 +51,14 @@ export class BodyComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscriptions.forEach(x => x.unsubscribe() );
     this.subscriptions = [];
+  }
+
+  getImageUrl(story: any): string {
+    return story.media
+      && story.media[0]
+      && story.media[0]['media-metadata']
+      && story.media[0]['media-metadata'][0]
+      && story.media[0]['media-metadata'][0].url;
   }
 
 }

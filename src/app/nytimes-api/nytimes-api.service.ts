@@ -10,8 +10,8 @@ import { SECTIONS } from './nytimes.constants';
 export class NYTimesApiService {
   private key: string = 'GhN0umQfQsxxUdqq9BcZzKCKMG26hFJ8';
   private urlBase: string = 'https://api.nytimes.com/svc/';
-  @Output() stories: BehaviorSubject<any> = this.getTopStoriesRequest('nyregion');
-  @Output() featured: BehaviorSubject<any> = this.getTopStoriesRequest('home');
+  @Output() stories: BehaviorSubject<any> = this.getTopStoriesRequest();
+  @Output() nyregion: BehaviorSubject<any> = this.getTopStoriesRequest('nyregion');
   @Output() popular: BehaviorSubject<any> = this.getMostPopularRequest();
 
   constructor(private http: HttpClient) { }
